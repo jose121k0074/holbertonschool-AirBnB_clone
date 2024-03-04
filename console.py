@@ -80,13 +80,13 @@ class HBNBCommand(cmd.Cmd):
         elif len(l_arg) == 1:
             print("** instance id missing **")
         else:
-        	key = "{}.{}".format(l_arg[0], l_arg[1])
+            key = "{}.{}".format(l_arg[0], l_arg[1])
             temp = models.storage.all()
             if key in temp:
                 del (temp[key])
             else:
                 print("** no instance found **")
-
+                
     def do_all(self, arg):
         """
         A command prints all string representation of all instances based or
