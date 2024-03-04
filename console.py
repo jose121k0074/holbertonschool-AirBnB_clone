@@ -2,12 +2,13 @@
 """
 A module cmd that contains the entry point of the command interpreter
 """
+
+
 import cmd
 import models
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 import shlex
-import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -37,55 +38,52 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """
-        A command that creates a new instance of BaseModel,
+        """ A command that creates a new instance of BaseModel,
         saves it (to the JSON file) and prints the id
         """
         if not arg:
             print("** class name missing **")
-        elif arg not in models.dict_class:
+        elif arg not in "BaseModel":
             print("** class doesn't exist **")
         else:
-            new_ins = models.dict_class[arg]()  # Create new instance
+            new_ins = BaseModel()
             new_ins.save()
             print(new_ins.id)
 
     def do_show(self, arg):
+        """ A command that show the class name and id
         """
-        A command that show the class name and id
-        """
+
         l_arg = shlex.split(arg)
         if len(l_arg) == 0:
             print("** class name missing **")
-        elif l_arg[0] not in models.dict_class:
+        elif l_arg[0] not in "BaseModel":
             print("** class doesn't exist **")
         elif len(l_arg) == 1:
             print("** instance id missing **")
         else:
             key = "{}.{}".format(l_arg[0], l_arg[1])
-            temp = models.storage.all()  # temp is self.__object
+            temp = models.storage.all()
             if key in temp:
-                print(temp[key])
+                print (temp[key])
             else:
-                print("** no instance found **")
+                print ("** no instance found **") 
 
     def do_destroy(self, arg):
-        """
-        A command that show the class name and id
+        """ A command that show the class name and id
         """
         l_arg = shlex.split(arg)
         if len(l_arg) == 0:
             print("** class name missing **")
-        elif l_arg[0] not in models.dict_class:
+        elif l_arg[0] not in "BaseModel":
             print("** class doesn't exist **")
         elif len(l_arg) == 1:
             print("** instance id missing **")
         else:
-            key = "{}.{}".format(l_arg[0], l_arg[1])
-            temp = models.storage.all()  # temp is self.__object
+        	key = "{}.{}".format(l_arg[0], l_arg[1])
+            temp = models.storage.all()
             if key in temp:
                 del (temp[key])
-                models.storage.save()
             else:
                 print("** no instance found **")
 
@@ -96,19 +94,14 @@ class HBNBCommand(cmd.Cmd):
         """
         l_arg = shlex.split(arg)
         list_obj = []
-        temp = models.storage.all()  # temp is self.__object
+        temp = models.storage.all()
 
-        if len(l_arg) == 0:  # (arg and l_arg[0] in models.dict_class) or
+        if (arg and l_arg[0] in "BaseModel") or len(l_arg) == 0:
             for key, value in temp.items():
-                list_obj.append(str(value))  # str(temp[key])
+                list_obj.append(str(value))
             print(list_obj)
-        elif l_arg[0] not in models.dict_class:
-            print("** class doesn't exist **")
         else:
-            for key, value in temp.items():
-                if key.split(".")[0] == l_arg[0]:
-                    list_obj.append(str(value))  # str(temp[key])
-            print(list_obj)
+            print("** class doesn't exist **")
 
     def do_update(self, arg):
         """
@@ -118,13 +111,13 @@ class HBNBCommand(cmd.Cmd):
         l_arg = shlex.split(arg)
         if len(l_arg) == 0:
             print("** class name missing **")
-        elif l_arg[0] not in models.dict_class:
+        elif l_arg[0] not in "BaseModel":
             print("** class doesn't exist **")
         elif len(l_arg) == 1:
             print("** instance id missing **")
         else:
             key = "{}.{}".format(l_arg[0], l_arg[1])
-            temp = models.storage.all()  # temp is self.__object
+            temp = models.storage.all()
             if key not in temp:
                 print("** no instance found **")
             elif len(l_arg) == 2:
