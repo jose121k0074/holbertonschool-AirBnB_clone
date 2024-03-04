@@ -52,7 +52,7 @@ class BaseModel():
         """
 
         dict_new = self.__dict__.copy()
-        dict_new['__class__'] = self.__class__ .__name__
         dict_new["created_at"] = dict_new['created_at'].isoformat()
         dict_new["updated_at"] = dict_new['updated_at'].isoformat()
+        dict_new['__class__'] = self.__class__ .__name__
         return (dict_new)
