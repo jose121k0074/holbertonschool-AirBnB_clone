@@ -51,11 +51,8 @@ class BaseModel():
         __dict__ of the instance
         """
 
-        dict_new = {}
-        for att in self.__dict__:
-            if att in ["created_at", "updated_at"]:
-                dict_new[att] = getattr(self, att).isoformat()
-            else:
-                dict_new[att] = getattr(self, att)
-        dict_new['__class__'] = self.__class__.__name__
+        dict_new = self.__dict__.copy()
+        dict_new['__class__'] = self.__class__ .__name__
+        dict_new["created_at"] = dict_new['created_at'].isoformat()
+        dict_new["updated_at"] = dict_new['updated_at'].isoformat()
         return (dict_new)

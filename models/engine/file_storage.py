@@ -44,12 +44,14 @@ class FileStorage():
                 json.dump(dict_save, f)
     
     def reload(self):
+        """
+        A method deserializes the JSON file to __objects
+        """
+
         try:
-            with open(FileStorage.__file_path) as f:
-                objdict = json.load(f)
-                for obj in objdict.values():
-                    clsname = obj["__class__"]
-                    del obj["__class__"]
-                    self.new(eval(clsname)(**obj))
-        except FileNotFoundError:
-            return
+            with open(self.__file_path, mode="r+", encoding="UTF-8") as f:
+                data = json.load(f)
+            for key, value in data.items():  # **kwargs
+                self.__objects.update({key: BaseModel(**value)})
+        except:
+            pass
