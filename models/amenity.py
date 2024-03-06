@@ -12,5 +12,5 @@ class Amenity(BaseModel):
     """
     A class Amenity that inherits from BaseModel
     """
-    
+
     name = ""
