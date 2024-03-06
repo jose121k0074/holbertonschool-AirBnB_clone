@@ -65,9 +65,9 @@ class HBNBCommand(cmd.Cmd):
             key = "{}.{}".format(l_arg[0], l_arg[1])
             temp = models.storage.all()
             if key in temp:
-                print (temp[key])
+                print(temp[key])
             else:
-                print ("** no instance found **") 
+                print("** no instance found **") 
 
     def do_destroy(self, arg):
         """ A command that show the class name and id
