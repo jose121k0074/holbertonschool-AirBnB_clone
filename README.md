@@ -1,4 +1,5 @@
-![](https://imgur.com/MxnNVCP)
+![](https://i.imgur.com/MxnNVCP.png)
+
 # [AirBnB](https://www.airbnb.com/) clone - The console
 
 ## Background Context
