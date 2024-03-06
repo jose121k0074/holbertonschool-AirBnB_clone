@@ -95,14 +95,19 @@ class HBNBCommand(cmd.Cmd):
         """
         l_arg = shlex.split(arg)
         list_obj = []
-        temp = models.storage.all()
+        temp = models.storage.all()  # temp is self.__object
 
-        if (arg and l_arg[0] in models.dict_class) or len(l_arg) == 0:
+        if len(l_arg) == 0:  # (arg and l_arg[0] in models.dict_class) or
             for key, value in temp.items():
-                list_obj.append(str(value))
+                list_obj.append(str(value))  # str(temp[key])
             print(list_obj)
-        else:
+        elif l_arg[0] not in models.dict_class:
             print("** class doesn't exist **")
+        else:
+            for key, value in temp.items():
+                if key.split(".")[0] == l_arg[0]:
+                    list_obj.append(str(value))  # str(temp[key])
+            print(list_obj)
 
     def do_update(self, arg):
         """
