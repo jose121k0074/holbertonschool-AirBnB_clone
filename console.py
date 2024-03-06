@@ -67,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
             if key in temp:
                 print(temp[key])
             else:
-                print("** no instance found **") 
+                print("** no instance found **")
 
     def do_destroy(self, arg):
         """ A command that show the class name and id
