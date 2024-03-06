@@ -112,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
         l_arg = shlex.split(arg)
         if len(l_arg) == 0:
             print("** class name missing **")
-        elif l_arg[0] not in models.dict_class::
+        elif l_arg[0] not in models.dict_class:
             print("** class doesn't exist **")
         elif len(l_arg) == 1:
             print("** instance id missing **")
