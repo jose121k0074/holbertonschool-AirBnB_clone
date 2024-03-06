@@ -97,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
         list_obj = []
         temp = models.storage.all()
 
-        if (arg and l_arg[0] in models.dict_class:) or len(l_arg) == 0:
+        if (arg and l_arg[0] in models.dict_class) or len(l_arg) == 0:
             for key, value in temp.items():
                 list_obj.append(str(value))
             print(list_obj)
