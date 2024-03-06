@@ -87,7 +87,7 @@ class HBNBCommand(cmd.Cmd):
                 models.storage.save()
             else:
                 print("** no instance found **")
-                
+
     def do_all(self, arg):
         """
         A command prints all string representation of all instances based or
